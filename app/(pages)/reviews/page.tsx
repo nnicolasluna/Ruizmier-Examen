@@ -123,8 +123,8 @@ export default function ReviewsPage() {
                                 </div>
 
                                 <button
-                                    onClick={() => handleDelete(item.id)}
-                                    className="ml-4 rounded-md border border-red-200 px-3 py-1 text-sm font-medium text-red-500 transition-colors hover:bg-red-50"
+                                    onClick={() => deleteReview(item.id)}
+                                    className="rounded-md border bg-red-500 font-semibold text-white py-2 px-3 hover:opacity-50"
                                 >
                                     Borrar
                                 </button>
