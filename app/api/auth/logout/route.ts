@@ -7,4 +7,5 @@ export async function POST() {
         expires: new Date(0),
         path: "/",
     });
+    return response;
 }
