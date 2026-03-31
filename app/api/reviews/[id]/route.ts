@@ -4,7 +4,7 @@ import { getUser } from "../../../../libs/auth";
 
 export async function DELETE({ params }: { params: { id: string } }) {
     const userLogged = await getUser();
-    const { id } = params;
+    const { id } = await params;
     const reviewerId = parseInt(id);
     const ownerReview = await prisma.review.findUnique({
         where: { id: reviewerId },
