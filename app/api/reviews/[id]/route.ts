@@ -2,7 +2,10 @@ import { NextResponse } from "next/server";
 import { prisma } from "../../../../libs/prisma";
 import { getUser } from "../../../../libs/auth";
 
-export async function DELETE({ params }: { params: { id: string } }) {
+export async function DELETE(
+    request: Request,
+    { params }: { params: Promise<{ id: string }> },
+) {
     const userLogged = await getUser();
     const { id } = await params;
     const reviewerId = parseInt(id);
