@@ -13,6 +13,13 @@ export async function POST(request: Request) {
         return NextResponse.json({ status: 500 });
     } else {
         const { book_title, rating, review, mood } = await request.json();
+        if (!book_title || !rating || !review || !mood) {
+            console.log("llenar espacios");
+            return NextResponse.json(
+                { message: "Incomplete fields" },
+                { status: 400 },
+            );
+        }
         const newReview = await prisma.review.create({
             data: {
                 userId: user.id,

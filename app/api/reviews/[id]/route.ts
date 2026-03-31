@@ -17,22 +17,21 @@ export async function DELETE(
     } else {
         if (!ownerReview) {
             return NextResponse.json({
-                status: 404,
                 message: "Review not found",
-            });
-        } else if (userLogged.id !== ownerReview.userId) {
-            return NextResponse.json({
-                status: 403,
-                message: "You are not the owner of this review",
-            });
-        } else {
-            await prisma.review.delete({
-                where: { id: reviewerId },
-            });
-            return NextResponse.json({
-                status: 200,
-                message: "Review deleted successfully",
-            });
+            }, { status: 404 });
         }
+        if (ownerReview.userId !== userLogged.id) {
+            return NextResponse.json(
+                { message: "You are not the owner of this review" },
+                { status: 403 },
+            );
+        }
+        await prisma.review.delete({
+            where: { id: reviewerId },
+        });
+        return NextResponse.json(
+            { message: "Review deleted successfully" },
+            { status: 200 },
+        );
     }
 }

@@ -22,23 +22,26 @@ export default function NewReviewsPage() {
             if (response.ok) {
                 router.push("/reviews");
                 router.refresh();
-            } else {
+            }
+            if (response.status === 400) {
+                alert("Please fill in all fields");
+            }else {
                 alert("Error to create review");
             }
+            
         } catch (error) {
-            console.log(error);
             alert("Error to create review");
         }
     };
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
             <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
-                <button 
-                        onClick={() => router.back()}
-                        className="text-sm text-blue-600 hover:underline"
-                    >
-                        ← Back to Reviews
-                    </button>
+                <button
+                    onClick={() => router.back()}
+                    className="text-sm text-blue-600 hover:underline"
+                >
+                    ← Back to Reviews
+                </button>
                 <h2 className="text-center text-2xl font-bold mb-6">Sign Up</h2>
                 <div className="space-y-4">
                     <div>

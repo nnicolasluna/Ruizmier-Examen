@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Live Demo
 
-## Getting Started
+    https://ruizmier-examen-production.up.railway.app/login
 
-First, run the development server:
+## Technologies  Used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Frontend: Next.js (React) + TypeScript. 
+Styles: Tailwind CSS. 
+Backend: Next.js API routes. 
+Database: PostgreSQL. 
+ORM: Prisma. 
+Authentication: JWT stored in cookies, HttpOnly, and hashing with bcryptjs.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Config
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+First, clone the repository
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    git clone https://github.com/nnicolasluna/Ruizmier-Examen.git
+    cd Ruizmier-Examen
 
-## Learn More
+If deploying to a production environment, log in to the repository.
 
-To learn more about Next.js, take a look at the following resources:
+Install dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Configure environment variables (Local) (.env)
 
-## Deploy on Vercel
+    DATABASE_URL="postgresql://postgres:password@localhost:5432/database_name?schema=public"
+    JWT_SECRET=xxxxx
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Configure environment variables on Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Create a PostgreSQL instance and obtain its address.
+
+    postgresql://postgres:password@localhost:5432/database_name?schema=public
+
+Then, connect your database to the obtained address and paste it into your project's environment variables after adding it to GitHub.
+
+    DATABASE_URL="postgresql://postgres:password@localhost:5432/database_name?schema=public"
+    JWT_SECRET=xxxxx
+
+Once configured, run Prisma to establish communication.
+
+    npx prisma generate dev
+    npx prisma migrate dev
+
+Run the development local server:
+
+    npm run dev
+
+

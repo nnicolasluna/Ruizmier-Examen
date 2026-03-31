@@ -33,8 +33,8 @@ export async function POST(request: Request) {
     } catch (error) {
         console.log(error);
         return NextResponse.json(
-            { message: "An error occurred while creating the user" },
-            { status: 500 }
+            { message: error || "Internal Server Error" },
+            { status: 500 },
         );
     }
 }

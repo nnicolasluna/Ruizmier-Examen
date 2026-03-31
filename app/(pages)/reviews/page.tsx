@@ -35,8 +35,10 @@ export default function ReviewsPage() {
             const dataResponse = await response.json();
             if (response.ok) {
                 setReviews(reviews.filter((r) => r.id !== Number(id)));
-            } else if (dataResponse.code === "403") {
-                alert("You are not authorized to delete this review");
+            } 
+            if (dataResponse.message === "You are not the owner of this review") {
+                if (!confirm("You do not have permission to delete this review."))
+                    return;
             } else {
                 alert("Error to delete review");
             }
