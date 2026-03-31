@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function ReviewsPage() {
-    const [reviews, setReviews] = useState([]);
+    const [reviews, setReviews] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
 
@@ -34,7 +34,7 @@ export default function ReviewsPage() {
             });
             const dataResponse = await response.json();
             if (response.ok) {
-                setReviews(reviews.filter((r) => r.id !== id));
+                setReviews(reviews.filter((r) => r.id !== Number(id)));
             } else if (dataResponse.code === "403") {
                 alert("You are not authorized to delete this review");
             } else {
