@@ -23,7 +23,7 @@ export default function LoginPage() {
     const signupButtonAction = async () => {
         const response = await signup({ name, email, password });
         console.log(response);
-        if (response.status === 200) {
+        if (response.ok) {
             router.push("/login");
         }else{
             alert("Error to sign up");
